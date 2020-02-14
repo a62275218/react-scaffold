@@ -1,23 +1,23 @@
 import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-// 非按需加载页面
-import Demo from '@/pages/demo/Demo'
-const MainLayout = lazy(() => import('@/components/layout/MainLayout'))
+// 非按需加载页面,比如layout
+import MainLayout from '@/components/layout/MainLayout'
 // 按需加载页面
 const Home = lazy(() => import('@/pages/home/Home'))
+const Demo = lazy(() => import('@/pages/demo/Demo'))
 
 
 const Router = () => {
   return <BrowserRouter>
-    <Suspense fallback={<div>Loading...</div>}>
-      <MainLayout>
+    <MainLayout>
+      <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route path="/" exact component={Demo}></Route>
           <Route path="/home" exact component={Home}></Route>
           <Route render={() => '404'}></Route>
         </Switch>
-      </MainLayout>
-    </Suspense>
+      </Suspense>
+    </MainLayout>
   </BrowserRouter>
 }
 

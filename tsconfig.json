@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": [
+        "./src/*"
+      ],
     },
     "target": "es5",
     "lib": [
@@ -21,7 +23,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    // 防止Key检索报错
+    "suppressImplicitAnyIndexErrors": true
   },
   "include": [
     "src"
