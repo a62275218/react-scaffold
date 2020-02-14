@@ -6,7 +6,7 @@ function MainLayout(props: any) {
     return (
         <div className={style.theme}>
             <button>点我切换主题</button>
-            <h1>Main Layout</h1>
+            <h1>我是全局Layout</h1>
             {children}
         </div>
     )

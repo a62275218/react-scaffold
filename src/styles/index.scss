@@ -1,4 +1,13 @@
 @import-normalize;
-@import './reset.scss';
-@import './variables.scss';
-@import './mixin.scss';
+@import "./reset.scss";
+@import "./variables.scss";
+@import "./mixin.scss";
+
+.global {
+  font-size: 20px;
+}
+
+.global-ignore{
+  background:#ccc !important;
+  font-size: 20px;
+}

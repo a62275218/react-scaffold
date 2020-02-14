@@ -107,6 +107,36 @@ module.exports = function (webpackEnv) {
               },
               stage: 3,
             }),
+            // 核心转px to viewport
+            require('postcss-px-to-viewport')({
+              unitToConvert: 'px',
+              viewportWidth: 750,
+              unitPrecision: 5,
+              propList: ['*'],
+              viewportUnit: 'vw',
+              fontViewportUnit: 'vw',
+              selectorBlackList: ['ignore'],
+              minPixelValue: 1,
+              mediaQuery: false,
+              replace: true,
+              exclude: [],
+              landscape: false,
+              landscapeUnit: 'vw',
+              landscapeWidth: 568
+            }),
+            //压缩和清理css 代码
+            require('cssnano')({
+              autoprefixer: false,
+              "postcss-zindex": false
+            }),
+            // 处理元素容器宽高比
+            require('postcss-aspect-ratio-mini'),
+            // 移动端1px的解决方案
+            require('postcss-write-svg')({
+              utf8: false
+            }),
+            // 给CSS的属性添加content的属性,兼容安卓低版本
+            require('postcss-viewport-units'),
             // Adds PostCSS Normalize as the reset css with default options,
             // so that it honors browserslist config in package.json
             // which in turn let's users customize the target behavior as per their needs.
