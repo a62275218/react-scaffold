@@ -1,8 +1,7 @@
 import { createContext } from 'react'
-import { IGlobalContext } from '@/interface'
+import { IGlobalContext } from '@/service'
 
 export default createContext<IGlobalContext>({
   theme: '',
-  user: {},
   updateContext: () => { }
-})
+});
