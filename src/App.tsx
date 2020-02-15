@@ -7,25 +7,19 @@ const App: FC = () => {
   const [globalState, setGlobalState] = useState<IGlobalContext>({
     theme: 'light',
     updateContext: (newState: Object) => {
-      GlobalContext && setGlobalState(state => ({
+      setGlobalState(state => ({
         ...state,
         ...newState
       }))
     }
   })
-  const { user } = globalState
 
   useEffect(() => {
-    if (user) {
-      // 这里不用箭头函数来确保this指向user
-      user.update = function (newProp: object) {
-        Object.keys(newProp).forEach(key => {
-          this[key] = newProp[key]
-        })
-        globalState.updateContext({ user: this })
-      }
+    if (!globalState.user) {
+      const user = localStorage.getItem('user')
+      user && globalState.updateContext({ user: new User(JSON.parse(user)) })
     }
-  }, [user])
+  })
 
   return <GlobalContext.Provider value={globalState}>
     <Router />
