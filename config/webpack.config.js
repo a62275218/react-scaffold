@@ -165,19 +165,6 @@ module.exports = function (webpackEnv) {
     return loaders;
   };
 
-  console.log(getStyleLoaders(
-    {
-      importLoaders: 3,
-      sourceMap: isEnvProduction && shouldUseSourceMap,
-    },
-    'sass-loader'
-  ).concat({
-    loader: require.resolve('sass-resources-loader'),
-    options: {
-      resources: path.resolve(__dirname, '../src/styles/index.scss')
-    }
-  }))
-
   return {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production

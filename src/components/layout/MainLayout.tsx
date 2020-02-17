@@ -9,7 +9,7 @@ const themeMap = {
   light: 'yellowTheme'
 }
 
-const MainLayout: FC = (props: any) => {
+const MainLayout: FC = (props) => {
   const context = useContext(GlobalContext)
   const { updateContext, theme } = context
   const { children } = props

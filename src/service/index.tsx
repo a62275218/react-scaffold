@@ -14,22 +14,7 @@ export class User {
     this.update(newUser)
   }
 
-  static login = (state: any) => {
-    const userData = {
-      gender: 1,
-      name: 'linrong'
-    }
-    const user = new User(userData);
-    state.updateContext({ user })
-    localStorage.setItem('user', JSON.stringify(user))
-  }
-
-  static logout = (state: any) => {
-    state.updateContext({ user: undefined })
-    localStorage.removeItem('user')
-  }
-
-  public update = (newProp: object, state?: any) => {
+  public update = (newProp: object, state?: IGlobalContext) => {
     Object.keys(newProp).forEach(key => {
       // 枚举类型的映射
       if (key === 'gender') {
@@ -41,6 +26,26 @@ export class User {
     if (state) {
       state.updateContext({ user: this })
     }
+  }
+
+  static login = (state: IGlobalContext) => {
+    const userData = {
+      gender: 1,
+      name: 'linrong'
+    }
+    const user = new User(userData);
+    state.updateContext({ user })
+    localStorage.setItem('user', JSON.stringify(user))
+  }
+
+  static logout = (state: IGlobalContext) => {
+    state.updateContext({ user: undefined })
+    localStorage.removeItem('user')
+  }
+
+  static restore = (state: IGlobalContext) => {
+    const storedUser = localStorage.getItem('user')
+    storedUser && state.updateContext({ user: new User(JSON.parse(storedUser)) })
   }
 }
 /* END CLASS */
